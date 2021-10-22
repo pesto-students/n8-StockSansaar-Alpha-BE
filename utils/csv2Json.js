@@ -1,9 +1,9 @@
-var camelCase = require('lodash').camelCase;
+var camelCase = require("lodash").camelCase;
 
 function csvTojs(csv) {
-  var lines = csv.split('\n');
+  var lines = csv.split("\n");
   var result = [];
-  var headers = lines[0].split(',');
+  var headers = lines[0].split(",");
 
   for (var i = 1; i < lines.length; i++) {
     var obj = {};
@@ -13,7 +13,7 @@ function csvTojs(csv) {
       startValueIdx = 0,
       idx = 0;
 
-    if (row.trim() === '') {
+    if (row.trim() === "") {
       continue;
     }
 
@@ -27,7 +27,10 @@ function csvTojs(csv) {
         } while (c !== '"' && idx < row.length - 1);
       }
 
-      if (c === ',' || /* handle end of line with no comma */ idx === row.length - 1) {
+      if (
+        c === "," ||
+        /* handle end of line with no comma */ idx === row.length - 1
+      ) {
         /* we've got a value */
         var value = row.substr(startValueIdx, idx - startValueIdx).trim();
 
@@ -36,7 +39,7 @@ function csvTojs(csv) {
           value = value.substr(1);
         }
         /* skip last comma */
-        if (value[value.length - 1] === ',') {
+        if (value[value.length - 1] === ",") {
           value = value.substr(0, value.length - 1);
         }
         /* skip last double quote */

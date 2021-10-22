@@ -1,15 +1,14 @@
 {
-  "name": "stock-market-india",
+  "name": "stock-sansaar-backend",
   "version": "1.0.0",
-  "description": "\"An API Library which fetches data from Bombay Stock Exchange and National Stock Exchange and returns data in JSON format.\"",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js 3000"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maanavshah/stock-market-india.git"
+    "url": "https://github.com/SanujBansal/StockSansaar-backend.git"
   },
   "keywords": [
     "api",
@@ -18,19 +17,16 @@
     "market",
     "exchange",
     "api",
-    "BSE",
     "NSE",
     "node",
     "express"
   ],
-  "author": "Maanav Shah",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/maanavshah/stock-market-india/issues"
-  },
-  "homepage": "https://github.com/maanavshah/stock-market-india#readme",
+  "author": "Sanuj Bansal",
   "dependencies": {
     "axios": "^0.18.1",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^10.0.0",
     "express": "^4.16.4",
     "indian-stock-exchange": "^1.3.33",
     "loadash": "^1.0.0"
