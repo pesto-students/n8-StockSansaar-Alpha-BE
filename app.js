@@ -48,6 +48,6 @@ app.post("/strategy/add", strategyController.saveStrategy);
 app.get("/strategy/get/:strategy", strategyController.getStrategy);
 app.get("/strategy/all", strategyController.getAllStrategies);
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.send("Hello, Test Automated Deployment using Code Pipeline");
 });
 module.exports = app;
