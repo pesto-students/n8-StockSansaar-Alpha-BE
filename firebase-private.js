@@ -2,7 +2,7 @@ module.exports = {
   type: "service_account",
   project_id: "stocksansaar",
   private_key_id: "7e3c9a748a529227e887e485a61fe9e80944e735",
-  private_key: process.env.FIREBASE_PRIVATE_KEY,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
   client_email: "firebase-adminsdk-qzkrr@stocksansaar.iam.gserviceaccount.com",
   client_id: "102808643088511199248",
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
