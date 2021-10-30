@@ -1,10 +1,10 @@
-// var API = require('indian-stock-exchange');
 const serverless = require("serverless-http");
 var express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 var admin = require("firebase-admin");
 require("dotenv").config();
+var CryptoJS = require("crypto-js");
 
 var serviceAccount = require("./firebase-private");
 const strategyController = require("./controllers/strategy");
@@ -18,8 +18,6 @@ const {
 } = require("./controllers/virtualPortfolio");
 const PORT = process.env.PORT || 7000;
 
-console.log(serviceAccount);
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -28,14 +26,14 @@ const authorizeMiddleware = async function (req, res, next) {
   if (req.path === "/") {
     return next();
   }
-  const token = req.headers.token;
+  const token = req.query.token;
+  const bytes = CryptoJS.AES.decrypt(token, process.env.TOKEN_KEY);
+  const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
   try {
-    const auth = await admin.auth().verifyIdToken(token);
+    const auth = await admin.auth().verifyIdToken(decryptedData);
     res.locals.auth = auth;
     next();
   } catch (error) {
-    // Handle error
-    // handleError(error);
     const err = new Error("you could not be authorized");
     err.status = 401;
     next(err);
