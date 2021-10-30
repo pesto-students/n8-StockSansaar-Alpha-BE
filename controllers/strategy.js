@@ -26,6 +26,7 @@ const getAllStrategies = (req, res) => {
   console.log("get all strategies");
   Strategy.find({}, function (err, doc) {
     if (err) return console.log(err);
+    console.log(doc);
     return res.send(doc);
   });
 };
