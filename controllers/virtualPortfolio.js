@@ -11,7 +11,7 @@ exports.createPortfolio = (req, res) => {
 
 exports.deletePortfolio = (req, res) => {
   VirtualPortfolio.findByIdAndRemove(req.body.id, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
     return res.send(doc);
   });
 };
@@ -30,7 +30,7 @@ exports.addStock = (req, res) => {
 
 exports.getPortfolioForUser = (req, res) => {
   VirtualPortfolio.find({ user: res.locals.auth.uid }, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
     return res.send(doc);
   });
 };

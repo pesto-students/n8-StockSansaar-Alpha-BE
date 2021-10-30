@@ -31,6 +31,7 @@ const authorizeMiddleware = async function (req, res, next) {
   const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
   try {
     const auth = await admin.auth().verifyIdToken(decryptedData);
+    console.log("authorization succesful");
     res.locals.auth = auth;
     next();
   } catch (error) {

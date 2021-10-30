@@ -10,21 +10,22 @@ function getStocksByStrategy(strategy) {
 
 const saveStrategy = (req, res) => {
   Strategy.create(req.body, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
     return res.send(doc);
   });
 };
 
 const getStrategy = (req, res) => {
   Strategy.findOne({ name: req.params.strategy }, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
     return res.send(doc);
   });
 };
 
 const getAllStrategies = (req, res) => {
+  console.log("get all strategies");
   Strategy.find({}, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
     return res.send(doc);
   });
 };
