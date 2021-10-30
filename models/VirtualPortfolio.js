@@ -7,7 +7,7 @@ const schema = new Schema({
   stocks: [
     {
       name: String,
-      symbol: String,
+      symbol: { type: String },
       price: String,
       quantity: Number,
       date: { type: Date, default: Date.now },

@@ -1,8 +1,16 @@
 const VirtualPortfolio = require("../models/VirtualPortfolio");
-// export const addStock = ({ userId }) => {};
 
 exports.createPortfolio = (req, res) => {
-  VirtualPortfolio.create(req.body, function (err, doc) {
+  VirtualPortfolio.init().then((VirtualPortfolio) => {
+    VirtualPortfolio.create(req.body, function (err, doc) {
+      if (err) return console.log(err);
+      return res.send(doc);
+    });
+  });
+};
+
+exports.deletePortfolio = (req, res) => {
+  VirtualPortfolio.findByIdAndRemove(req.body.id, function (err, doc) {
     if (err) return handleError(err);
     return res.send(doc);
   });
@@ -11,7 +19,7 @@ exports.createPortfolio = (req, res) => {
 exports.addStock = (req, res) => {
   VirtualPortfolio.findOneAndUpdate(
     { _id: req.body.portfolioId },
-    { $push: { stocks: { $each: req.body.stocks } } },
+    { $addToSet: { stocks: { $each: req.body.stocks } } },
     { returnDocument: "after" },
     function (err, doc) {
       if (err) return console.log(err);
@@ -21,7 +29,7 @@ exports.addStock = (req, res) => {
 };
 
 exports.getPortfolioForUser = (req, res) => {
-  VirtualPortfolio.find({ user: req.body.user }, function (err, doc) {
+  VirtualPortfolio.find({ user: res.locals.auth.uid }, function (err, doc) {
     if (err) return handleError(err);
     return res.send(doc);
   });
