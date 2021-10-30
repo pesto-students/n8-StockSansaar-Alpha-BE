@@ -18,6 +18,8 @@ const {
 } = require("./controllers/virtualPortfolio");
 const PORT = process.env.PORT || 7000;
 
+console.log(serviceAccount);
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
