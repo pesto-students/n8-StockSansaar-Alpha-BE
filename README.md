@@ -6,7 +6,7 @@ StockSansaar is a platform to find, filter, analyze, and observe stocks and data
 
 <br/>
 
-# Table of Content
+# Table of Contents
 
 1. [Demo](#demo)
 2. [Installation](#installation)
